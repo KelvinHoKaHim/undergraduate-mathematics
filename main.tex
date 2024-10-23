@@ -1,0 +1,73 @@
+\documentclass{book}
+\usepackage{amsmath,amsthm,amssymb,tikz,txfonts,showlabels,hyperref,mathrsfs}
+\usepackage[utf8]{inputenc}
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{cor*}{Corollary}
+\newtheorem{defn}{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{lem}{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{rem}{Remark}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{prop*}{Proposition}
+\newtheorem{prop}{Proposition}
+\newtheorem*{ax*}{Axiom}
+\newtheorem{ax}{Axiom}
+
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\slim}{\lim_{n\rightarrow\infty}}
+\newcommand{\spn}[1]{\text{span}({#1})}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\brac}[1]{\left({#1}\right)}
+\newcommand{\sbrac}[1]{\left[{#1}\right]}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\dmat}[1]{\begin{vmatrix}#1\end{vmatrix}}
+\newcommand{\cis}[1]{\cos(#1)+i\sin(#1)}
+\newcommand{\ff}[1]{\mathbf{#1}}
+\renewcommand{\vec}[1]{\ff{#1}}
+\newcommand{\diagram}[1]{\begin{center}\includegraphics*[scale = 0.4]{#1}\end{center}}
+\newcommand{\question}[1]{\newpage\textbf{Question #1}~\\}
+\newcommand{\vat}[1]{\ff{\hat{#1}}}
+\renewcommand{\d}[1]{\:d#1}
+\renewcommand{\i}{\vat{i}}
+\renewcommand{\j}{\vat{j}}
+\renewcommand{\k}{\vat{k}}
+\renewcommand{\empty}{\varnothing}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\reason}[1]{\tag*{(#1)}}
+\renewcommand{\|}{\biggr|}
+\newcommand{\dx}{\d x}
+\newcommand{\dy}{\d y}
+\newcommand{\dz}{\d z}
+\newcommand{\ds}{\d s}
+\newcommand{\dt}{\d t}
+\newcommand{\dr}{\d \vec r}
+\newcommand{\inner}[1]{\langle #1\rangle}
+\newcommand{\norm}[1]{\|\| #1 \|\|}
+\newcommand{\jaco}[2]{\frac{\partial (#1)}{\partial {#2}}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\title{Undergraduate Mathematics}
+\author{Ho Ka Him Kelvin}
+
+\begin{document}
+\maketitle
+    \input{sections/Preface.tex} 
+    \tableofcontents
+    \part{Foundation of Mathematics}
+    \input{sections/Logic.tex}
+    \input{sections/NaiveSetTheory.tex}
+    \input{sections/PropositionalLogic.tex}
+    \input{sections/PredicateLogic.tex}
+    \input{sections/AxiomaticSetTheory.tex}
+    \part{Mathematics}
+\end{document}

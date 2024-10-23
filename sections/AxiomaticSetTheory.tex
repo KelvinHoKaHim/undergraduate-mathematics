@@ -1,0 +1,183 @@
+\chapter{Axiomatic Set Theory}
+\section{Zermelo-Frankel Axioms}
+\subsection{Axiom of Existence, Extensionality, and Restricted Comprehension}
+\begin{rem}
+    From this chapter and onward, we will no longer write proofs in pure symbols, for writing proof like this is extremely inconvenient and daunting for the readers and the authors. We will write proofs in natural language from now on. But the reader should under
+\end{rem}
+In previous chapters, we have already gone through Naive Set Theory. We have witnessed a careless use of set would yield gruesome contradictions. Therefore, until now, we have only used set very carefully. We wish to develop a system of axiomatic set theory that would put clear demarcation on what is definable and what is not. We have already constructed the ZFC model in the previous chapter. We will now enter such a model and develop of Mathematics in its entirety from here.\\
+
+To start off, there will be nothing for us to work on if not a single set exist. Hence, the following axiom
+\begin{ax}
+    \textbf{(Axiom of Existence)} There is a set ($\vdash \exists x(x=x)$)
+\end{ax}
+As we have discussed in naive set theory, set equality should be determined extensionally, i.e. two sets are equal when they have the same elements. 
+\begin{ax}
+    \textbf{(Axiom of Extensionality)} Suppose $A,B$ are sets, then the following are equivalent
+    \begin{itemize}
+        \item $A = B$
+        \item for any $x$, $x\in A$ if and only if $x\in B$.
+    \end{itemize}
+    ($\vdash \forall x\forall y (x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))$)
+\end{ax}
+By these two axiom along, it allows us to define subsets 
+\begin{defn}
+    (Subset relation) Let $A,B$ be sets, then $A$ is a \textbf{subset} of $B$, written $A\subseteq B$, if for any $x$, $x\in A$ implies $y\in B$.
+\end{defn}
+\begin{defn}
+    (Strict subset) Let $A,B$ be sets, then $A$ is a \textbf{strict subset} of $B$, written $A\subset B$, if $A\subseteq B$ and $A\neq B$.
+\end{defn}
+\begin{prop}
+    Let $A,B$ be sets, then the following are equivalent
+    \begin{itemize}
+        \item $A=B$
+        \item $A\subseteq B$ and $B\subseteq A$
+    \end{itemize}
+\end{prop}
+\begin{proof}
+    ~ 
+    \begin{itemize}
+        \item ($\Rightarrow$) Suppose $A=B$. Then for any $x$, $x\in A$ if and only if $x\in B$. Then we have $A\subseteq B$ and $B\subseteq A$.
+        \item ($\Leftarrow$) Suppose $A= B$, then for any $x$, we have 1). if $x\in A$ then $x\in B$ and 2.) if $x\in B$ then $x\in A$. Then we have $A\subseteq B$ and $B\subseteq A$.
+    \end{itemize}
+\end{proof}
+\begin{rem}
+    This proposition is extremely useful. Virtually all proof involving set equality uses this proposition.
+\end{rem}
+By this point, we already know that \textit{a set is the extension of a predicate}, expressed symbolically, $\set{x|\varphi x}$. And we have seen how this definition leads to Russell's paradox. Until now, we have been using set very carefully. But if we were to develop a reliable language for mathematics, we have to prevent Russell's paradox from ever arising, otherwise we could never be sure of the validity of our theorem.\\
+What is really wrong with the "set of all set that does not contain itself"? For convenience, write $R = \set{x|x\not\in x}$. Now we know that existence of $R$ implies contradictions. So $R$ cannot really exist. The writing "$R$" itself is merely an empty name that denotes nothing. To prevent naming a non-existent set, a strategy is to include only those elements from an already existing set. 
+\begin{ax}
+    (Axiom schema of restricted comprehension) Let $\varphi$ be a predicate and $A$ be a set. Then there exist a set $B$ such that for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$. ($\vdash \forall x\exists y\forall z(z\in y\leftrightarrow z\in x\wedge \varphi x)$)
+\end{ax}
+From this axiom, I am only picking out elements that are already pre-existing by themselves.  
+\begin{rem}
+    A curious point can be pointed out here. The natural language formulation of this axiom is rather odd. In predicate logic, quantifiers do NOT range across predicates, so the writing "Let $\varphi$ be a predicate" is not technically legal. In the formal language formulation of this axiom, we are not confronted with this issue, the "proposition" $\vdash \forall x\exists y\forall z(z\in y\leftrightarrow z\in x\wedge \varphi x)$ is really left as a schema, the readers can substitute $\varphi$ with any predicates they favour. Hence, the word "schema" in the name of the axiom.
+\end{rem}
+\begin{prop}
+    Let $A$ be a set and $\varphi$ be a predicate. Then the set defined by specification is unique
+\end{prop}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{rem}
+    For simplicity, we can write $B$ as $\set{x\in A|\phi x}$
+\end{rem}
+\begin{thm}
+    There exist a set $E$, called an \textbf{empty set}, such that for any $x$, $x\not\in \empty$. 
+\end{thm}
+\begin{proof}
+    By the axiom of existence, there exist a set $A$. Let $E = \set{x\in A|x\neq x}$, then for any $x$, since $x=x$, then it is not the case that $x\neq x$. So, $x\not\in E$.
+\end{proof}
+\begin{prop}
+    Let $A$ be a set and $\varphi$ be a predicate, then $\set{x\in A|\varphi x}\subseteq A$.
+\end{prop}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{prop}
+    The empty set is unique. 
+\end{prop}
+\begin{proof}
+    Let $E,E'$ be empty sets. Then for any $x$, $x\not\in E$. This makes the proposition "for any $x$, if $x\in E$ then $x\in E'$" true. Therefore, we have $E\subseteq E'$. By arguing the same way for $E'$, we have $E'\subseteq E$. Hence, $E= E'$.
+\end{proof}
+\begin{rem}
+    The empty set is denoted $\empty$.
+\end{rem}
+\begin{prop}
+    For any set $A$, $\empty\subseteq A$.
+\end{prop}
+\begin{proof}
+    Since $x\not\in\empty$ for any $x$, the proposition "for any $x$, if $x\in \empty$ then $x\in A$" is true. So $\empty\subseteq A$.
+\end{proof}
+\begin{defn}
+    (Set intersection) Let $A,B$ be sets, the \textbf{intersection} of $A$ and $B$, written $A\cap B$, is the set $A\cap B:= \set{x\in A|x\in B}$
+\end{defn}
+\begin{prop}
+    (Commutativity of set intersection) For any set $A,B$, $A\cap B = B\cap A$.
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x$, suppose $x\in A\cap B$, then $x\in A$ and $x\in B$. Then $x\in B$ and $x\in A$. So, $x\in B\cap A$.
+        \item ($\supseteq$) By a similar argument, we can deduce that for any $x\in B\cap A$, $x\in A\cap B$.
+        Therefore, $A\cap B = B\cap A$.
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    (Associativity of set intersection) For any set $A,B,C$, $(A\cap B)\cap C = A\cap (B \cap C)$
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cap B) \cap C\\
+        \Leftrightarrow & x\in A\cap B \text{ and } x\in C\\
+        \Leftrightarrow & (x\in A\text{ and } x\in B) and \in C\\
+        \Leftrightarrow & x\in A \text{ and }(x\in B\text{ and  }x\in C)\\
+        \Leftrightarrow & x\in A \text{ and }(x\in B\cap C)\\
+        \Leftrightarrow & x\in A\cap(B\cap C)
+    \end{align*}
+    So, $(A\cap B)\cap C = A\cap(B\cap C)$
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\cap A = A$
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For all $x$, suppose $x\in A\cap A$. Then $x\in A$ and $x\in A$ and hence $x\in A$. Therefore, $x\in A$.
+        \item ($\supseteq$) For all $x\in A$, we have $x\in A$ and hence $x\in A$ and $x\in A$. So, $x\in A\cap A$ 
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    For all set $A$, $A\cap \empty = \empty$
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) for any $x\in A\cap \empty$, we have $x\in \empty$.
+        \item ($\supseteq$) for any $x$. Since $x\not\in \empty$. Then it is not that case that $x\in A$ and $x\in \empty$. So, $x\not\in A\cap \empty$ and therefore if $x\in A\cap \empty$, then $x\in \empty$.
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    For all set $A,B,C$, if $A\subseteq B$ and $A\subseteq C$, then $A\subseteq B\cap C$.
+\end{prop}
+\begin{proof}
+    For any $x\in A$, since $A\subseteq B$ and $A\subseteq C$, we have $x\in B$ and $x\in C$. So, $x\in B\cap C$. 
+\end{proof}
+\begin{defn}
+    (Disjoint) Let $A,B$ be sets. $A,B$ are \textbf{disjoint} if $A\cap B = \empty$
+\end{defn}
+\begin{defn}
+    (Pairwise disjoint) Let $A$ be a set, $A$ is \textbf{pairwise disjoint} when for any $x,y\in A$, if $x\neq y$, then $x\cap y= \empty$
+\end{defn}
+\begin{defn}
+    (Set complement) Let $A,B$ be sets. Then the \textbf{complement} of $A$ with respect of $B$, denoted $A\setminus B$, is the set $A\setminus B := \set{x\in A|x\not\in B}$
+\end{defn}
+\begin{defn}
+    For any set $A$, $A\setminus \empty = A$
+\end{defn}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x$, if $x\in A\setminus \empty$, then $x\in A$ and $x\not\in \empty$. Then $x\in A$. Hence, $A\setminus \empty \subseteq A$.
+        \item ($\supseteq$) For any $x$, if $x\in A$. By definition of empty set, $x\not\in A$. So, $x\in A$ and $x\not\in \empty$. Hence, $x\in A\setminus \empty$. Therefore, $A\subseteq A\setminus\empty$.
+    \end{itemize}
+    Therefore, $A\setminus \empty= A$.
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\setminus A = \empty$ 
+\end{prop}
+\begin{proof}
+    For any $x$, $x\not\in\empty$ by definition and it is not the case that $x\in A$ and $x\not\in A$. So, $x\not\in\empty$ and $x\not\in A\setminus A$. Then if $x\in\empty$ then $x\in A\setminus A$, and if $x\in A\setminus A$ then $x\not\in \empty$. Therefore, $A\setminus A = \empty$.
+\end{proof}
+\begin{prop}
+    For any set $A,B$, $A\setminus B \subseteq A$
+\end{prop}
+\begin{proof}
+    Pick any $x\in A\setminus B$, then we have $x\in A$ and $x\not\in B$. In particular, we have $x\in A$ and hence $A\setminus B \subseteq B$.
+\end{proof}
+\subsection{Axiom of Pairing, Union, and Power Set} 
+The readers may have complainted by now that the axiom schema of specification may be too restrictive. The only set we know exist for sure is the empty set. And the axiom of comprehension only allows us to create set from an existing set. As a result, we could not make much out from these. Hence, we rely on three axioms that create a larger set from pre-existing sets.\\
+The first is pair, which encapsulates the idea of a doubleton.
+\begin{ax}
+    \textbf{(Axiom of Pairing)} For all 
+\end{ax}
