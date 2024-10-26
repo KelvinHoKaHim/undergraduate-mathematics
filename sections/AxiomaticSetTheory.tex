@@ -177,7 +177,238 @@ From this axiom, I am only picking out elements that are already pre-existing by
 \end{proof}
 \subsection{Axiom of Pairing, Union, and Power Set} 
 The readers may have complainted by now that the axiom schema of specification may be too restrictive. The only set we know exist for sure is the empty set. And the axiom of comprehension only allows us to create set from an existing set. As a result, we could not make much out from these. Hence, we rely on three axioms that create a larger set from pre-existing sets.\\
-The first is pair, which encapsulates the idea of a doubleton.
+The \textit{Axiom of Pair} describe the existence of a doubleton, the \textit{Axiom of Union} for a generalised union, and the \textit{Axiom of Power Set} for the power set.
 \begin{ax}
-    \textbf{(Axiom of Pairing)} For all 
+    \textbf{(Axiom of Pairing)} For all $x,y$, there is a set $A$ such that $x\in A$ and $y\in A$. ($\vdash \forall x\forall y\exists z (x\in z\vee y\in z))$
 \end{ax}
+\begin{ax}
+    \textbf{(Axiom of Union)} Let $\mathscr A$ be a set, then there exists a set $B$ such that for any $A\in \mathscr A$, if $x\in A$, then $x\in B$. ($\vdash \forall x\exists y\forall z (z\in x\rightarrow z\in y)$)
+\end{ax}
+\begin{ax}
+    \textbf{(Axiom of Power Set)} Suppose $A$ be a set, then there is a set $P$ such that if $B\subseteq A$ is a subset, then $B\in P$. ($\vdash \forall x\exists y\forall z (z\subseteq x\rightarrow z\in y)$)
+\end{ax}
+It is actually wrong to say these axioms captures the idea of doubletons, unions, and power sets exactly. Take the Axiom of Pairing as an example, let $x,y$ be two distinct object, then the set $\set{x,y,\square, \triangle,\text{Hello}}$ also satisfies the conditions stated in the axiom. $\square, \triangle$, and Hello are unwanted element that we would like to be excluded from our set. The set will be the desired doubleton only after we applied the Axiom Schema of Restricted Comprehension.
+\begin{prop}
+    ($Doubleton$) For any $x,y$, there is a unique set $A$, called a \textbf{doubleton} of $x,y$, such that for any $z$, $z\in A$ if and only if $z=x$ or $z=y$.
+\end{prop}
+\begin{proof}
+    Let $x,y$ be objects, then by the Axiom of Pairing, there is an $A$ such that $x\in z$ or $y\in z$. Then let $D = \set{w\in z| w=z\text{ or }w=y}$. It follows immediately that $D$ is the set we after. The Axiom Schema of Restricted Comprehension ensures its uniqueness.
+\end{proof}
+\begin{prop}
+    (Singleton) For any $x$, there is a unique set $S$ such that for any $y$, $y\in S$ if and only if $y= x$.
+\end{prop}
+\begin{proof}
+    The set $\set{x,x}$ is our desired set.
+\end{proof}
+The Axiom of Union and the Axiom of Power Set also faces the same problem, we also need to use Axiom Schema of Restricted Specification on these two two axioms to obtain the desired sets. The proofs go very similarly as the one we just had. 
+\begin{prop}
+    (Power Set) For any $A$, there exist a unique $P$, called the \textbf{power set} of $P$, such that for any $B$, $B\in P$ if and only if $B\subseteq A$.
+\end{prop}
+\begin{proof}
+    Omitted.
+\end{proof}
+\begin{prop}
+    (Union) For any $\mathscr A$, there is a unique set $U$, called the \textbf{generalised union of }$\mathscr A$, such that for any $x$, $x\in U$ if and only if $x\in A$ for some $A\in \mathscr A$.
+\end{prop}
+\begin{proof}
+    Omitted.
+\end{proof}
+\begin{prop}
+    (Generalised Intersection) For any set $\mathscr A$, if $\mathscr A$ is non-empty, there is a set $I$ such that for any $x$, $x\in I$ if and only if $x\in A$ for any $A\in\mathscr A$. 
+\end{prop}
+\begin{rem}
+    We write the generalised union of $\mathscr A$ as $\bigcup\mathscr A$ or $\displaystyle \bigcup_{A\in\mathscr A}A$, the generalised intersection of $\mathscr A$ as $\bigcap \mathscr A$ or $\displaystyle\bigcap_{A\in\mathscr A}A$ and the power set of $A$ as $\mc P(A)$. Moreover, if $\mathscr A= \set{A,B}$, we write $\bigcup \mathscr A = A\cup B = B\cup A$, and $\bigcap A\cap B = B\cap A$. We call $A\cup B$ and $A\cap B$ simply their \textbf{union} and \textbf{intersections} respectively.
+\end{rem}
+Here, we will prove some very trivial yet important properties regarding union, intersections, and power sets.
+\prop{(Associativity of set union) For any set $A,B,C$, $(A\cup B)\cup C = A\cup(B\cup C)$}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cup B)\cup C\\
+        \Leftrightarrow & x\in (A\cup B)\text{ or }x\in C\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B)\text{ or }x\in C\\
+        \Leftrightarrow & x\in A\text{ or }(x\in B\text{ or }x\in C)\\
+        \Leftrightarrow & x\in A \text{ or }x\in B\cup C\\
+        \Leftrightarrow & x\in A \cup(B\cup C)
+    \end{align*}
+    Therefore, $(A\cup B)\cup C = A\cup (B\cup C)$
+\end{proof}
+\begin{prop}
+    {For any set $A,B$, $A\subseteq A\cup B$ and $B\subseteq A\cup B$}
+\end{prop}
+\begin{proof}
+    For any set $x$, if $x\in A$, then $x\in A$ or $x\in B$. Then $x\in A\cup B$. So, $x\in A\cup B$.\\
+    Similarly, $B\subseteq B\cup A$. Since $A\cup B = B\cup A$, we have $B\subseteq A\cup B$.
+\end{proof}
+\begin{prop}
+    {For any set $A$, $A\cup\empty = A$}
+\end{prop}
+\begin{proof}
+    ($\subseteq$) For any $x$, if $x\in A\cup \empty$, then $x\in A$ or $x\in \empty$. But since $x\in\empty$ by definition, $x\in A$. Therefore, $A\cup \empty\subseteq A$\\
+    ($\supseteq$) For any $x$, if $x\in A$, then $x\in A$ or $x\in \empty$. Then $x\in A\cup \empty$. Then $A\subseteq A\cup\empty$\\
+    Therefore, $A\cup\empty = A$
+\end{proof}
+\begin{prop}
+    {For any set $A$, $A\cup A = A$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivlent. 
+    \begin{align*}
+        & x\in A\\
+        \Leftrightarrow & x\in A \text{ or }x\in A\\
+        \Leftrightarrow & x\in A\cup A
+    \end{align*}
+    So, $A\cup A = A$
+\end{proof}
+\begin{prop}
+    {For any set $A,B,C$, if $A\subseteq C$ and $B\subseteq C$, then $A\cup B\subseteq C$}\
+\end{prop}
+\begin{proof}
+    Pick any $x\in A\cup B$, then $x\in A$ or $x\in B$. 
+    \begin{itemize}
+        \item If $x\in A$, since $A\subseteq C$, we have $x\in C$
+        \item If $x\in B$, since $B\subseteq C$, we have $x\in C$
+    \end{itemize}
+    In any case, $x\in C$. So, $A\cup B\subseteq C$.
+\end{proof}
+\begin{prop}
+    {(Distributivity between set intersection and set union) For any set $A,B,C$, $(A\cup C)\cap(B\cup C) = (A\cap B)\cup C$ and $(A\cap C)\cup (B\cap C) = (A\cup B) \cap C$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cup C)\cap(B\cup C)\\
+        \Leftrightarrow & x\in (A\cup C) \text{ and }x\in(B\cup C)\\
+        \Leftrightarrow & (x\in A\text{ or }x\in C)\text{ and }(x\in B\text{ or }x\in C)\\
+        \Leftrightarrow & (x\in A \text{ and }x\in B)\text{ or }x\in C\\
+        \Leftrightarrow & (x\in A\cap B)\text{ or }x\in C\\
+        \Leftrightarrow & x\in(A\cap B)\cup C
+    \end{align*}
+    \begin{align*}
+        & x\in (A\cap C)\cup (B\cap C)\\
+        \Leftrightarrow & x\in A\cap C \text{ or }x\in B\cap C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in C)\text{ or }(x\in B\text{ and }x\in C)\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B) \text{ and }x\in C\\
+        \Leftrightarrow & x\in A\cup B \text{ and }x\in C\\
+        \Leftrightarrow & x\in(A\cup B)\cap C
+    \end{align*}
+\end{proof}
+\begin{cor}
+    {For any set $A,B,C$, $A\cap (B\cup C) = (A\cap B)\cup  (A\cap C)$ and $A\cup(B\cap C) = (A\cup B)\cap (A\cup C)$}
+\end{cor}
+\begin{proof}
+    \begin{gather*}
+        A\cap (B\cup C) = (B\cup C)\cap A = (B\cap A)\cup (C\cap A) = (A\cap B)\cup (A\cap C)\\
+        A\cup (B\cap C) = (B\cap C)\cup A = (B\cup A)\cap (C\cup A) = (A\cup B)\cap (A\cup C)
+    \end{gather*}
+\end{proof}
+\begin{prop}
+    {(Distributivity between set intersection and set complement) For any set $A,B,C$, $(A\cap B)\setminus C = (A\setminus C) \cap (B\setminus C)$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in(A\cap B)\setminus C\\
+        \Leftrightarrow & x\in A\cap B\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in B)\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in B)\text{ and }(x\not\in C\text{ and } x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in C)\text{ and }(x\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C \text{ and }x\in B\setminus C\\
+        \Leftrightarrow & x\in (A\setminus C)\cap (B\setminus C)
+    \end{align*}
+    So, $(A\cap B)\setminus C = (A\setminus C)\cap (B\setminus C)$
+\end{proof}
+\begin{prop}
+    {(Distributivity of set complement I) For any set $A,B,C$, $(A\cup B)\setminus C = (A\setminus C)\cup (B\setminus C)$ and $(A\cap B)\setminus C = (A\setminus C)\cup (A\setminus B)$}
+\end{prop}
+\begin{proof}
+    For all $x$, the following are equivalent, 
+    \begin{align*}
+        & x\in(A\cup B)\setminus C\\
+        \Leftrightarrow & x\in A\cup B \text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B)\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\a x\not\in C)\o (x\in B\a x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C\o x\in B\setminus C\\
+        \Leftrightarrow & x\in(A\setminus C)\cup(B\setminus C)
+    \end{align*}
+    So, $(A\cup B)\setminus C = (A\setminus C)\cup (B\setminus C)$
+    \begin{align*}
+        & x\in(A\cap B)\setminus C\\
+        \Leftrightarrow & x\in(A\cap B)\a x\not\in C\\
+        \Leftrightarrow & (x\in A\a x\in B)\a x\not\in C\\
+        \Leftrightarrow & (x\in A \a x\in B)\a (x\not\in C \a x\not\in C)\\
+        \Leftrightarrow & (x\in A\a x\not\in C)\a (x\in B\a x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C \a x\in B\setminus C\\
+        \Leftrightarrow & x\in (A\setminus C)\cap (B\setminus C)
+    \end{align*}
+    So, $(A\cap B)\setminus C = (A\setminus C)\cup (A\setminus B)$
+\end{proof}
+\prop{(Distributivity of set complement II/De Morgan's law)For any set $A,B,C$, $A\setminus(B\cap C) = (A\setminus B) \cup (A\setminus C)$ and $A\setminus (B\cup C) = (A\setminus B)\cap (A\setminus C)$}
+\begin{proof}
+    For any $x$, the following are equivalent,
+    \begin{align*}
+        & x\in A\setminus (B\cap C)\\
+        \Leftrightarrow & x\in A \text{ and }x\not\in B\cap C\\
+        \Leftrightarrow & x\in A \text{ and }(x\not\in B\text{ or }x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in B)\text{ or }(x\in A\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus B\text{ or }x\in A\setminus C\\
+        \Leftrightarrow & x\in (A\setminus B)\cup(A\setminus C)
+    \end{align*}
+    So, $A\setminus(B\cap C) = (A\setminus B) \cup (A\setminus C)$\\
+    \begin{align*}
+        & x\in A\setminus (B\cup C)\\
+        \Leftrightarrow & x\in A\text{ and }x\not\in B\cup C\\
+        \Leftrightarrow & x\in A \text{ and }(x\not\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & (x\in A \text{ and } x\in A)\text{ and }(x\not\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in B)\text{ and }(x\in A\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus B\text{ and }x\in A\setminus C\\
+        \Leftrightarrow & x\in(A\setminus B)\cap(A\setminus C)\\
+    \end{align*}
+    So, $A\setminus (B\cup C) = (A\setminus B)\cap (A\setminus C)$
+\end{proof}
+\begin{prop}
+    For any $A\in\mathscr A$, $A\subseteq \bigcup\mathscr A$
+\end{prop}
+\begin{proof}
+    For any $A\in\mathscr A$, for any $x\in A$, by the definition of generalised union, we have $x\in\mathscr A$, then $A\subseteq \bigcup \mathscr A$.
+\end{proof}
+\begin{prop}
+    Let $\mathscr A$ be a set. Suppose $A\in\mathscr A$. Then $\bigcap\mathscr A\subseteq A$.
+\end{prop}
+\begin{proof}
+    For any $x\in \bigcap\mathscr A$, we have $x\in B$ for any $B\in\mathscr A$. In particular, we have $x\in A$. 
+\end{proof}
+\begin{prop}
+    For any $\mathscr A, \mathscr B$, if $\mathscr A\subseteq \mathscr B$, then $\bigcup\mathscr A\subseteq \bigcup\mathscr B$.
+\end{prop}
+\begin{proof}
+    Let $\mathscr A\subseteq \mathscr B$. The for any $x\in \bigcup A$, there is some $A\in\bigcup \mathscr A$ such that $x\in A$. Since $\mathscr A\subseteq B$, then $A$ is also a subset of $B$, then $x\in \bigcup B$.
+\end{proof}
+\begin{prop}
+    For any $\mathscr A, \mathscr B$, if $\mathscr A\subseteq \mathscr B$, then $\bigcap \mathscr B\subseteq \bigcap\mathscr A$
+\end{prop}
+\begin{proof}
+    Let $x\in\bigcap\mathscr B$, then for any $A\in\mathscr A$, since $\mathscr A\subseteq \mathscr B$, we have $A\in\mathscr B$. By definition of intersection, we have $x\in A$. Therefore, by the definition of intersection again, $x\in \bigcap\mathscr A$.
+\end{proof}
+\begin{prop}
+    For any set $A$, $\empty\in\mc P(A)$
+\end{prop}
+\begin{proof}
+    Since $\empty\subseteq P$, $\empty\in \mc P(A)$
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\in\mc P(A)$.
+\end{prop}
+\begin{proof}
+    Since $A\subseteq A$, therefore $A\in\mc P(A)$.
+\end{proof}
+\begin{prop}
+    Let $A,B$ be sets. Then $A\subseteq B$ if and only if $\mc P(A)\subseteq \mc P(B)$.
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item $(\Rightarrow)$ 
+        \item ($\Leftarrow$) For any $x\in A$, we have $\set{x}\in\mc P(A)$. Since $\mc P(A)\subseteq \mc P(B)$, $\set{x}\in\mc P(B)$ as well. Then $\set{x}\subseteq B$ and hence $x\in B$.
+    \end{itemize}
+\end{proof}
