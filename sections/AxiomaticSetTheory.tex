@@ -1,6 +1,6 @@
 \chapter{Axiomatic Set Theory}
 \section{Zermelo-Frankel Axioms}
-\subsection{Axiom of Existence, Extensionality, and Restricted Comprehension}
+\subsection{Axiom of Existence, Extensionality, Restricted Comprehension, and Foundation}
 \begin{rem}
     From this chapter and onward, we will no longer write proofs in pure symbols, for writing proof like this is extremely inconvenient and daunting for the readers and the authors. We will write proofs in natural language from now on. But the reader should under
 \end{rem}
@@ -20,35 +20,11 @@ As we have discussed in naive set theory, set equality should be determined exte
     ($\vdash \forall x\forall y (x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))$)
 \end{ax}
 By these two axiom along, it allows us to define subsets 
-\begin{defn}
-    (Subset relation) Let $A,B$ be sets, then $A$ is a \textbf{subset} of $B$, written $A\subseteq B$, if for any $x$, $x\in A$ implies $y\in B$.
-\end{defn}
-\begin{defn}
-    (Strict subset) Let $A,B$ be sets, then $A$ is a \textbf{strict subset} of $B$, written $A\subset B$, if $A\subseteq B$ and $A\neq B$.
-\end{defn}
-\begin{prop}
-    Let $A,B$ be sets, then the following are equivalent
-    \begin{itemize}
-        \item $A=B$
-        \item $A\subseteq B$ and $B\subseteq A$
-    \end{itemize}
-\end{prop}
-\begin{proof}
-    ~ 
-    \begin{itemize}
-        \item ($\Rightarrow$) Suppose $A=B$. Then for any $x$, $x\in A$ if and only if $x\in B$. Then we have $A\subseteq B$ and $B\subseteq A$.
-        \item ($\Leftarrow$) Suppose $A= B$, then for any $x$, we have 1). if $x\in A$ then $x\in B$ and 2.) if $x\in B$ then $x\in A$. Then we have $A\subseteq B$ and $B\subseteq A$.
-    \end{itemize}
-\end{proof}
-\begin{rem}
-    This proposition is extremely useful. Virtually all proof involving set equality uses this proposition.
-\end{rem}
-By this point, we already know that \textit{a set is the extension of a predicate}, expressed symbolically, $\set{x|\varphi x}$. And we have seen how this definition leads to Russell's paradox. Until now, we have been using set very carefully. But if we were to develop a reliable language for mathematics, we have to prevent Russell's paradox from ever arising, otherwise we could never be sure of the validity of our theorem.\\
-What is really wrong with the "set of all set that does not contain itself"? For convenience, write $R = \set{x|x\not\in x}$. Now we know that existence of $R$ implies contradictions. So $R$ cannot really exist. The writing "$R$" itself is merely an empty name that denotes nothing. To prevent naming a non-existent set, a strategy is to include only those elements from an already existing set. 
+
 \begin{ax}
-    (Axiom schema of restricted comprehension) Let $\varphi$ be a predicate and $A$ be a set. Then there exist a set $B$ such that for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$. ($\vdash \forall x\exists y\forall z(z\in y\leftrightarrow z\in x\wedge \varphi x)$)
+    \textbf{(Axiom schema of restricted comprehension)} Let $\varphi$ be a predicate and $A$ be a set. Then there exist a set $B$ such that for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$. ($\vdash \forall x\exists y\forall z(z\in y\leftrightarrow z\in x\wedge \varphi x)$)
 \end{ax}
-From this axiom, I am only picking out elements that are already pre-existing by themselves.  
+From this axiom, I am only picking out elements that are already pre-existing by themselves.\\
 \begin{rem}
     A curious point can be pointed out here. The natural language formulation of this axiom is rather odd. In predicate logic, quantifiers do NOT range across predicates, so the writing "Let $\varphi$ be a predicate" is not technically legal. In the formal language formulation of this axiom, we are not confronted with this issue, the "proposition" $\vdash \forall x\exists y\forall z(z\in y\leftrightarrow z\in x\wedge \varphi x)$ is really left as a schema, the readers can substitute $\varphi$ with any predicates they favour. Hence, the word "schema" in the name of the axiom.
 \end{rem}
@@ -56,7 +32,7 @@ From this axiom, I am only picking out elements that are already pre-existing by
     Let $A$ be a set and $\varphi$ be a predicate. Then the set defined by specification is unique
 \end{prop}
 \begin{proof}
-    Trivial.
+    Let $A$ be a set and $\varphi$ is predicate, then let $B,C$ be sets specified by the Axiom Schema of Restricted Comprehension. Then for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$ and $x\in C$ if and only if $x\in A$ and $\varphi x$. Therefore, we have $x\in B$ if and only if $x\in C$. Hence, $B=C$.
 \end{proof}
 \begin{rem}
     For simplicity, we can write $B$ as $\set{x\in A|\phi x}$
@@ -175,6 +151,7 @@ From this axiom, I am only picking out elements that are already pre-existing by
 \begin{proof}
     Pick any $x\in A\setminus B$, then we have $x\in A$ and $x\not\in B$. In particular, we have $x\in A$ and hence $A\setminus B \subseteq B$.
 \end{proof}
+Now there is still one problem lingering. The axiom of restricted comprehension has prevented us from \textit{constructing} sets that contains itself, i.e. sets that have the property $x\in x$. But what if such a set \textit{already existed in the first place}? Readers might wonder why do we want to prevent any set from containing itself. Don't we already prevented Russell's paradox via restricted comprehension? Consider this : Suppose a set $y$ with the property $y\in y$ exists. By the Axiom Schema of Restricted Comprehension, the set $x = \set{zs\in y|z=y}$
 \subsection{Axiom of Pairing, Union, and Power Set} 
 The readers may have complainted by now that the axiom schema of specification may be too restrictive. The only set we know exist for sure is the empty set. And the axiom of comprehension only allows us to create set from an existing set. As a result, we could not make much out from these. Hence, we rely on three axioms that create a larger set from pre-existing sets.\\
 The \textit{Axiom of Pair} describe the existence of a doubleton, the \textit{Axiom of Union} for a generalised union, and the \textit{Axiom of Power Set} for the power set.
@@ -408,7 +385,95 @@ Here, we will prove some very trivial yet important properties regarding union, 
 \begin{proof}
     ~
     \begin{itemize}
-        \item $(\Rightarrow)$ 
+        \item $(\Rightarrow)$ Let $C\in\mc P(A)$, which implies $C\subseteq B$. Then by properties of subset relation, we have $C\subseteq A$. Therefore, $C\in \mc P(B)$.
         \item ($\Leftarrow$) For any $x\in A$, we have $\set{x}\in\mc P(A)$. Since $\mc P(A)\subseteq \mc P(B)$, $\set{x}\in\mc P(B)$ as well. Then $\set{x}\subseteq B$ and hence $x\in B$.
     \end{itemize}
 \end{proof}
+\begin{prop}
+    Let $A,B$ be sets, then $\mc P(A)\cap \mc P(B) = \mc P(A\cap B)$ 
+\end{prop}
+\begin{proof}
+    For any $C$, the following are equivalent 
+    \begin{align*}
+        & C\in\mc P(A)\cap \mc P(B)\\
+        \Leftrightarrow & C\in\mc P(A)\a C\in\mc P(B)\\
+        \Leftrightarrow & C\subseteq A\a C\subseteq B\\
+        \Leftrightarrow & C\subseteq A\cap B\\
+        \Leftrightarrow & C\in\mc P(A\cap B)
+    \end{align*}
+\end{proof}
+\begin{prop}
+    Let $A,B$ be sets, then $\mc P(A)\cup\mc P(B)\subseteq \mc P(A\cup B).$
+\end{prop}
+\begin{proof}
+    For any $C\in\mc P(A)\cup\mc P(B)$, we have $C\subseteq A$ or $C\subseteq B$. In any case, we have $C\subseteq A\cup B$. Therefore, $C\in\mc P(A\cup B)$
+\end{proof}
+\begin{rem}
+    Readers may be tempted to state that $\mc P(A)\cup\mc P(A) = \mc P(A\cup B)$, so that the two preceding propositions will be parallel. But it is indeed that case that $\mc P(A\cup B)\subseteq \mc P(A)\cup \mc P(B)$ is not necessarily true. Consider the set $\set{x},\set{y}$, where $x,y$ are distinct objects. Then we have the following 
+    \begin{align*}
+        \mc P(\set{x}) &= \set{\empty, \set{x}} \\
+        \mc P(\set{y}) &= \set{\empty, \set{y}} \\
+        \mc P(\set{x})\cup\mc P(\set{y}) &= \set{\empty, \set{x},\set{y}} \\
+        \mc P(\set{x} \cup\set{y}) &= \set{\empty, \set{x,y}}
+    \end{align*}
+    Clearly, we cannot have $\mc P(A\cup B)\subseteq \mc P(A)\cup \mc P(B)$ is not necessarily true. Consider the set $\set{x},\set{y}$.
+\end{rem}
+\begin{prop}
+    Let $A$ be a set, then $\bigcup \mc P(A) = A$
+\end{prop}
+\begin{proof}
+    Let $x$ be an object, the followings are equivalent 
+    \begin{align*}
+        & x\in \bigcup \mc P(A)\\
+        \Leftrightarrow & x\in B\text{ for some }B\in\mc P(A)\\
+        \Leftrightarrow & x\in B \text{ for some }B\subseteq A
+    \end{align*}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x\in\bigcup \mc P(A)$, we have $x\in B$ for some $B\in \mc P(A)$. It follows that $B\subseteq A$ and hence $x\in A$.
+        \item ($\supseteq$) For any $x\in A$, we have $\set{x}\in\mc P(A)$. This implies that $\set{x}\subseteq \bigcup\mc P(A)$. Since $x\in\set{x}$, we have $x\in\bigcup \mc P(A)$.
+    \end{itemize}
+\end{proof}
+\begin{defn}
+    {(Ordered pair) For all $x,y$, the order pair $(x,y)$ is defined as $(x,y) = \set{\set{x},\set{x,y}}$}
+\end{defn}
+\begin{defn}
+    {(Ordered triple) For all $x,y,z$, the ordered triple $(x,y,z)$ is defined as $(x,y,z) = ((x,y),z)$}
+\end{defn}
+\prop{For all $a,b,c,d$, $(a,b) = (c,d)$ if and only if $a = c$, $b = d$}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\Rightarrow$) Suppose $(a,b) = (c,d)$.
+        \begin{itemize}
+            \item (\textsc{Case 1}) Suppose $a = b$, then $(a,b) = \set{\set{a},\set{a,b}} = \set{\set{a},\set{a,a}} = \set{\set{a}}$. Also, $\set{\set{c},\set{c,d}} = (c,d) = (a,b) = \set{\set{a}}$. Thus, $\set{c} = \set{c,d} = \set{a}$ and therefore $c = d = a$. Since $a = b$, $b = d$,
+            \item (\textsc{Case 2}) Suppose $a\neq b$. Since $(a,b)= (c,d)$, we have $\set{a} = \set{c}$ or $\set{a} = \set{c,d}$. Then $a = c$ or $a = c = d$. In any case, $a = c$. We have also $\set{b} = \set{c}$ or $\set{b} = \set{c,d}$. But since $b\neq a$, $b\neq c$. Then it is not the case that $\set{b} = \set{c}$. So, $\set{b} = \set{c,d}$. Then we have $b = c$ or $ b = d$. Since $b\neq c$, we have $b = d$.
+        \end{itemize}
+        \item ($\Leftarrow$) Suppose $a = c$, $b = d$. Then $(a,b) = \set{\set{a},\set{a,b}} = \set{\set{c}, \set{c,d}} = (c,d)$
+    \end{itemize}
+\end{proof}
+\prop{For all $a,b,c,d,e,f$, $(a,b,c) = (d,e,f)$ if and only if $a=d,b=e,c=f$}
+\begin{proof}
+    ($\Rightarrow$) Suppose $(a,b,c) = (d,e,f)$, then $\set{((a,b),c)} = ((d,e),f)$. Then $(a,b) = (d,e)$ and $c=f$. Since $(a,b) = (d,e)$, we have $a = d$ and $b=e$.\\
+    ($\Leftarrow$) Suppose $a = d, b = e, c = f$, then $(a,b,c) = ((a,b) ,c) = ((d,e),f) = (d,e,f)$
+\end{proof}
+\begin{prop}
+    {\textbf{(Cartesian product)} For any set $A,B$, there exist a unique set $C$ such that for any $z$, $z\in C$ if and only if $z= (x,y)$ for some $x\in A, y\in B$}.
+\end{prop}
+\begin{proof}
+        The desired $C$ is the set $C =  \set{z\in\mathcal P (\mathcal P(A\cup B))|\text{ there exist some unique }x\in A,y\in B\text{ such that }(x,y) = z}$
+\end{proof}
+\begin{rem}
+    We will denote the Cartesian product of $A,B$ as $A\times B$.
+\end{rem}
+\subsection{Axiom of Infinity and Axiom of Choice}
+We are left with two Axioms 
+\begin{defn}
+    Let $A$ be a set, then the \textbf{successor} of $A$, denoted $S(A)$, is the set $S(A):=A\cup S(A)$
+\end{defn}
+\begin{ax}
+    \textbf{(Axiom of Infinity)} There exists a set $I$, called the \textbf{inductive set}, such that $\empty\in I$ and for any $x$, if $x\in I$, then $S(x)\in I$
+\end{ax}
+\begin{ax}
+    \textbf{(Axiom of Choice)} Let $A$ be non-empty and pairwise disjoint. There exists a 
+\end{ax}

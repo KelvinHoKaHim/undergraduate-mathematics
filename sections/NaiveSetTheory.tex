@@ -1,1 +1,64 @@
 \chapter{Naive Set Theory}
+Starting from this chapter, our goal is to develop the required logical tool to describe Mathematics. As history have went, set theory became our standard logical starting point to the Mathematical universe. But what really is a set?
+\section{Intention and Extension}
+"Meaning" is an ambiguous word. What does it mean by "the planets of our Solar System"? There are two possible ways to answer. You can explain the concepts of "planets" and "our solar system" and how do they relate to each other. Our discussion remains on the conceptual level and mentions no concrete object, we call this kind of meaning the \textit{intention}. You can also explain to the person "the planets of our Solar System" as the list : Mercury, Venus, Earth, Mars, Jupiter, Saturn, Neptune, Uranus. You go beyond the concepts and mention the actual object. We are talking about the things agrees with the intention---- the \textit{extensions}.\\
+~\\
+We always deem the intention more fundamental than the extension. This is why in Plato's \textit{Euthyphro}, when Euthyphro defines pious as "to prosecute the wrongdoer", Socrates dismiss his definitions and says "I did not bid you tell me one or two of the many pious actions but that from itself that makes all pious actions pious." He wanted the intentional meaning of "pious", not the extensional one.\\
+~\\
+If we do not make clear when we mean something, whether we are talking about its intention or extension, ambiguity arises. Consider the proposition "All creatures with a heart is the same as all creatures with a kidney." There are two ways to interpret it. If we are talking about intention, obviously the concepts involves in "creatures with a heart" is different to those in "creatures with a kidney". So this proposition is false. To interpret it extensionally, we may go out to the world and discover all creatures that have a heart indeed also have a kidney and vice versa. Hence, it is indeed that case that the creatures with a heart is the same as the creature with a kidney. The proposition is true.\\
+~\\
+\section{Sets and Extension}
+This duality of intention and extension is closely related to the notion of sets. Common wisdom would define a set as "a collection of things", and set elements are "things the set contains". These two "definitions" are problematic. Firstly, all collections must contain things. Then the phrase "a collection of things" makes basically no difference than "a collection". Thus, this definition basically equate sets with collections. What we are doing is just giving a new name to something without explaining it. Secondly, the definition of set elements only lies in the metaphoric level. Sets are, quite obviously, abstract object. A set do not really "contains" something. It has no space, nor location, nor an inside or outside. We all have a vague idea of a set, otherwise saying a set "contains" something is mere senseless. It is not. It is trying to communicate an idea. But we have to do better than this. \\
+~\\
+We must turn to analyse what we call "a collection". What makes a collection identifiable to us? We either enumerate all the things in that collections, or to identify some properties that are common to all members of this collection. Suppose Jack hands me a bag of ten candies and ask me to pick one. How could I possibly identify this bag of candies? I can either enumerate the candies : A strawberry-flavoured one, a lemon-flavoured one, ... Or I can identify this collection of candies as "all candies contained in the bag Jack handed to me". But do be careful! What am I interested is not discussing the concepts involved in "all candies contained in the bag Jack handed to me", but the extensions that falls under the concept, i.e. the candies in the Jack's bag. \\
+~\\
+In logic, the concept \textit{predicate} captures the idea of "intention". Then sets, being a logical tool, is exactly the \textit{extension of the predicate}. How about enumeration? Enumeration is just a special kind of predicate. In saying that "Jack is a member of the collection made up by Jack, Jacky, and Jackson" makes no difference to saying "Jack belongs to the set given by the predicate 'x is Jack or x is Jacky or x is Jackson'". Hence, we can now explicate the notion of sets as
+\begin{defn}
+    \textbf{(Sets)} A set are all the extensions of a predicate. $x$ is said to be a \textbf{member} of the set, if the predicate applies to $x$.
+\end{defn}
+For convenience, we let $\varphi x$ represent a predicate, and the set corresponding to that predicate as $\set{x|\varphi x}$. If $x$ is a member of the set $A$, we write $x\in A$.\\
+~\\
+
+An important aspect of sets we shall discuss is when should sets be equal and when they should not. We have now made clear that sets correspond to the extension of predicates. Then since sets appeal to the extensional side of meaning, the proposition 
+\begin{equation*}
+    \set{x|x\text{ is a creature with a heart}} = \set{x|x\text{ is a creature with a kidney}}
+\end{equation*}
+should be regarded as true despite the intention is different. Hence, we have the following axiom.
+\begin{ax}
+    \textbf{(Axiom of Extensionality)} Suppose $A,B$ are sets, then the following are equivalent
+    \begin{itemize}
+        \item $A = B$
+        \item for any $x$, $x\in A$ if and only if $x\in B$.
+    \end{itemize}
+Except talking about equality, we may also talk about subset, i.e. a part of a set.
+\end{ax}
+\begin{defn}
+    (Subset relation) Let $A,B$ be sets, then $A$ is a \textbf{subset} of $B$, written $A\subseteq B$, if for any $x$, $x\in A$ implies $y\in B$.
+\end{defn}
+\begin{defn}
+    (Strict subset) Let $A,B$ be sets, then $A$ is a \textbf{strict subset} of $B$, written $A\subset B$, if $A\subseteq B$ and $A\neq B$.
+\end{defn}
+\begin{prop}
+    Let $A,B$ be sets, then the following are equivalent
+    \begin{itemize}
+        \item $A=B$
+        \item $A\subseteq B$ and $B\subseteq A$
+    \end{itemize}
+\end{prop}
+\begin{proof}
+    ~ 
+    \begin{itemize}
+        \item ($\Rightarrow$) Suppose $A=B$. Then for any $x$, $x\in A$ if and only if $x\in B$. Then we have $A\subseteq B$ and $B\subseteq A$.
+        \item ($\Leftarrow$) Suppose $A= B$, then for any $x$, we have 1). if $x\in A$ then $x\in B$ and 2.) if $x\in B$ then $x\in A$. Then we have $A\subseteq B$ and $B\subseteq A$.
+    \end{itemize}
+\end{proof}
+\begin{rem}
+    This proposition is extremely useful. Virtually all proof involving set equality uses this proposition.
+\end{rem}
+\begin{prop}
+    \textbf{(Transitivity of Subset Relation)} Let $A,B,C$ be set, if $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$.
+\end{prop}
+\begin{proof}
+    For any $x\in A$, since $A\subseteq B$, we have $x\in B$. Since $B\subseteq C$, we have $x\in C$. Therefore, we have $A\subseteq C$.
+\end{proof}
+\section{Specification and Russell's Paradox}\
