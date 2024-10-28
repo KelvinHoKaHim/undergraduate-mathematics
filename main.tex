@@ -15,8 +15,10 @@
 \newtheorem{prop}{Proposition}
 \newtheorem*{ax*}{Axiom}
 \newtheorem{ax}{Axiom}
-\newtheorem*{prin*}{Principle}
-\newtheorem{prin}{Principle}
+\newtheorem*{deri*}{Derivation}
+\newtheorem{deri}{Derivation}
+\newtheorem*{para*}{Paradox}
+\newtheorem{para}{Paradox}
 
 
 \newcommand{\set}[1]{\{#1\}}
@@ -73,6 +75,18 @@
     \input{sections/NaiveSetTheory.tex}
     \input{sections/PropositionalLogic.tex}
     \input{sections/PredicateLogic.tex}
-    \input{sections/AxiomaticSetTheory.tex}
     \part{Mathematics}
+    \setcounter{thm}{0}
+    \setcounter{cor}{0}
+    \setcounter{defn}{0}
+    \setcounter{lem}{0}
+    \setcounter{rem}{0}
+    \setcounter{prop}{0}
+    \setcounter{ax}{0}
+    \setcounter{para}{0}
+    \input{sections/AxiomaticSetTheory.tex}
+    \input{sections/AlgebraicStructures.tex}
+    \input{sections/LinearAlgebra.tex}
+    \input{sections/Calculus.tex}
+    \input{sections/RealAnalysis.tex}
 \end{document}

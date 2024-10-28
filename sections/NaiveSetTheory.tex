@@ -10,13 +10,13 @@ If we do not make clear when we mean something, whether we are talking about its
 \section{Sets and Extension}
 This duality of intention and extension is closely related to the notion of sets. Common wisdom would define a set as "a collection of things", and set elements are "things the set contains". These two "definitions" are problematic. Firstly, all collections must contain things. Then the phrase "a collection of things" makes basically no difference than "a collection". Thus, this definition basically equate sets with collections. What we are doing is just giving a new name to something without explaining it. Secondly, the definition of set elements only lies in the metaphoric level. Sets are, quite obviously, abstract object. A set do not really "contains" something. It has no space, nor location, nor an inside or outside. We all have a vague idea of a set, otherwise saying a set "contains" something is mere senseless. It is not. It is trying to communicate an idea. But we have to do better than this. \\
 ~\\
-We must turn to analyse what we call "a collection". What makes a collection identifiable to us? We either enumerate all the things in that collections, or to identify some properties that are common to all members of this collection. Suppose Jack hands me a bag of ten candies and ask me to pick one. How could I possibly identify this bag of candies? I can either enumerate the candies : A strawberry-flavoured one, a lemon-flavoured one, ... Or I can identify this collection of candies as "all candies contained in the bag Jack handed to me". But do be careful! What am I interested is not discussing the concepts involved in "all candies contained in the bag Jack handed to me", but the extensions that falls under the concept, i.e. the candies in the Jack's bag. \\
+We must turn to analyse what we call "a collection". What makes a collection identifiable to us? We either enumerate all the things in that collections, or to identify some properties that are common to all members of this collection. Suppose Jack hands me a bag of ten candies and ask me to pick one. How could I possibly identify this bag of candies? I can either enumerate the candies : A strawberry-flavoured one, a lemon-flavoured one, ... Or I can identify this collection of candies as "all candies contained in the bag Jack handed to me". But do be careful! What am I interested is not discussing the concepts involved in "all candies contained in the bag Jack handed to me", but the extensions that falls under the concept, i.e. the candies in Jack's bag. \\
 ~\\
 In logic, the concept \textit{predicate} captures the idea of "intention". Then sets, being a logical tool, is exactly the \textit{extension of the predicate}. How about enumeration? Enumeration is just a special kind of predicate. In saying that "Jack is a member of the collection made up by Jack, Jacky, and Jackson" makes no difference to saying "Jack belongs to the set given by the predicate 'x is Jack or x is Jacky or x is Jackson'". Hence, we can now explicate the notion of sets as
 \begin{defn}
-    \textbf{(Sets)} A set are all the extensions of a predicate. $x$ is said to be a \textbf{member} of the set, if the predicate applies to $x$.
+    \textbf{(Sets)} A set is a definable totality of all extensions of a predicate. $x$ is said to be a \textbf{member} of the set, if the predicate applies to $x$.
 \end{defn}
-For convenience, we let $\varphi x$ represent a predicate, and the set corresponding to that predicate as $\set{x|\varphi x}$. If $x$ is a member of the set $A$, we write $x\in A$.\\
+The reason for including the word "definable" will be explained in the next section. For convenience, we let $\varphi x$ represent a predicate, and the set corresponding to that predicate as $\set{x|\varphi x}$. If $x$ is a member of the set $A$, we write $x\in A$.\\
 ~\\
 
 An important aspect of sets we shall discuss is when should sets be equal and when they should not. We have now made clear that sets correspond to the extension of predicates. Then since sets appeal to the extensional side of meaning, the proposition 
@@ -33,10 +33,10 @@ should be regarded as true despite the intention is different. Hence, we have th
 Except talking about equality, we may also talk about subset, i.e. a part of a set.
 \end{ax}
 \begin{defn}
-    (Subset relation) Let $A,B$ be sets, then $A$ is a \textbf{subset} of $B$, written $A\subseteq B$, if for any $x$, $x\in A$ implies $y\in B$.
+    \textbf{(Subset relation)} Let $A,B$ be sets, then $A$ is a \textbf{subset} of $B$, written $A\subseteq B$, if for any $x$, $x\in A$ implies $y\in B$.
 \end{defn}
 \begin{defn}
-    (Strict subset) Let $A,B$ be sets, then $A$ is a \textbf{strict subset} of $B$, written $A\subset B$, if $A\subseteq B$ and $A\neq B$.
+    \textbf{(Strict subset)} Let $A,B$ be sets, then $A$ is a \textbf{strict subset} of $B$, written $A\subset B$, if $A\subseteq B$ and $A\neq B$.
 \end{defn}
 \begin{prop}
     Let $A,B$ be sets, then the following are equivalent
@@ -61,4 +61,486 @@ Except talking about equality, we may also talk about subset, i.e. a part of a s
 \begin{proof}
     For any $x\in A$, since $A\subseteq B$, we have $x\in B$. Since $B\subseteq C$, we have $x\in C$. Therefore, we have $A\subseteq C$.
 \end{proof}
-\section{Specification and Russell's Paradox}\
+\section{Specification and Russell's Paradox}
+Naive was once praised for its success in establishing the foundation for Mathematics. And by no doubt it still it. But there had been a period where paradoxes (or Mathematicians and Philosophers at that time would have called "antinomies") were found within set theory, and the foundation of Mathematics was in the cusp of collapsing. Here are some of them.\\
+\begin{para*}
+    \textbf{(Russell's Paradox)} The set of all sets that do not contain itself, i.e. $\set{x|x\not\in x}$ is contradictory.
+\end{para*}
+\begin{proof}
+    We write $R$ as the set $R=\set{x|x\not\in x}$. We will now show that $R\in R$ and $R\not\in R$ simultaneously.
+    \begin{itemize}
+        \item Suppose $R\in R$, then it is not the case that $R\not\in R$, therefore, the predicate $x\not\in x$ does not apply on $R$. So $R\not\in R$.
+        \item But it $R\not\in R$, then the predicate $x\in x$ applies on $R$, then we have actually $R\in R$.
+    \end{itemize}
+    Arguing from both case, we would derive $R\in R$ and $R\not\in R$. A contradiction!
+\end{proof}
+This exploded set theory. Especially the fact that this paradox lies at the doorstep of set theory seem to render all works in set theory useless. We must investigate why the contradiction occurs.\\
+~\\
+From this paradox, we discovered the existence of $R$ is contradictory, so the set $R$ must not exist. Then every time when we use the writing "$R$" or "$\set{x|x\not\in x}$", the writing is just an empty name, a name that stands for nothing. So it is meaningless to actually talk about $R$.\\
+~\\
+The readers should notice the said paradox only arise when we are discussing sets of sets, or equivalently, sets whose predicates apply to sets. Therefore, a specification $\set{x|\varphi x}$ where $\varphi x$ is a predicate only applies to non-sets is still valid. Then the problem at hand is to discuss the treatment of sets of sets, or more simply, \textit{collections}.\\
+~\\
+Now defining a collection from a predicate, as we have seen, might lead to contradictions. But what if we take the subset of a pre-existing collection by a predicate? Since each set in the collection already exists, th
+\begin{ax}
+    \textbf{(Axiom Schema of Restricted Comprehension)} Let $\varphi$ be a predicate and $A$ be a set. Then there exist a set $B$ such that for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$. 
+\end{ax}
+Now that we have resolve Russell's paradox. But this leads us to an unsatisfactory result --- it seems that some predicates do not have a corresponding set. But this go against our intuition that all for any predicate, there is a totality of extensions of that predicate. What went wrong? Consider the "set" $R = \set{x|x\not\in x}$. In normal case, we only wanted the object $R$ to act as a "container" of all sets with the property $x\not\in x$. We never intended $R$ to be inside itself.\\
+~\\
+We have placed ourselves in a situation where, 1.) we want to preserve the existence of the totality of extension for every predicate, 2.) but we also want to prevent Russell's paradox. This forces us into believing that $R$ is not a set. It is an object that also represents to totality of extensions of a predicate, but not a set. Hence, the following definition
+\begin{defn}
+    \textbf{(Class)} 
+\end{defn}
+\begin{prop}
+    Let $A$ be a set and $\varphi$ be a predicate. Then the set defined by specification is unique
+\end{prop}
+\begin{proof}
+    Let $A$ be a set and $\varphi$ is predicate, then let $B,C$ be sets specified by the Axiom Schema of Restricted Comprehension. Then for any $x$, $x\in B$ if and only if $x\in A$ and $\varphi x$ and $x\in C$ if and only if $x\in A$ and $\varphi x$. Therefore, we have $x\in B$ if and only if $x\in C$. Hence, $B=C$.
+\end{proof}
+\begin{rem}
+    For simplicity, we can write $B$ as $\set{x\in A|\phi x}$
+\end{rem}
+\begin{thm}
+    There exist a set $E$, called an \textbf{empty set}, such that for any $x$, $x\not\in \empty$. 
+\end{thm}
+\begin{proof}
+    By the axiom of existence, there exist a set $A$. Let $E = \set{x\in A|x\neq x}$, then for any $x$, since $x=x$, then it is not the case that $x\neq x$. So, $x\not\in E$.
+\end{proof}
+\begin{prop}
+    Let $A$ be a set and $\varphi$ be a predicate, then $\set{x\in A|\varphi x}\subseteq A$.
+\end{prop}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{prop}
+    The empty set is unique. 
+\end{prop}
+\begin{proof}
+    Let $E,E'$ be empty sets. Then for any $x$, $x\not\in E$. This makes the proposition "for any $x$, if $x\in E$ then $x\in E'$" true. Therefore, we have $E\subseteq E'$. By arguing the same way for $E'$, we have $E'\subseteq E$. Hence, $E= E'$.
+\end{proof}
+\begin{rem}
+    The empty set is denoted $\empty$.
+\end{rem}
+\begin{prop}
+    For any set $A$, $\empty\subseteq A$.
+\end{prop}
+\begin{proof}
+    Since $x\not\in\empty$ for any $x$, the proposition "for any $x$, if $x\in \empty$ then $x\in A$" is true. So $\empty\subseteq A$.
+\end{proof}
+\begin{defn}
+    (Set intersection) Let $A,B$ be sets, the \textbf{intersection} of $A$ and $B$, written $A\cap B$, is the set $A\cap B:= \set{x\in A|x\in B}$
+\end{defn}
+\begin{prop}
+    (Commutativity of set intersection) For any set $A,B$, $A\cap B = B\cap A$.
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x$, suppose $x\in A\cap B$, then $x\in A$ and $x\in B$. Then $x\in B$ and $x\in A$. So, $x\in B\cap A$.
+        \item ($\supseteq$) By a similar argument, we can deduce that for any $x\in B\cap A$, $x\in A\cap B$.
+        Therefore, $A\cap B = B\cap A$.
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    (Associativity of set intersection) For any set $A,B,C$, $(A\cap B)\cap C = A\cap (B \cap C)$
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cap B) \cap C\\
+        \Leftrightarrow & x\in A\cap B \text{ and } x\in C\\
+        \Leftrightarrow & (x\in A\text{ and } x\in B) and \in C\\
+        \Leftrightarrow & x\in A \text{ and }(x\in B\text{ and  }x\in C)\\
+        \Leftrightarrow & x\in A \text{ and }(x\in B\cap C)\\
+        \Leftrightarrow & x\in A\cap(B\cap C)
+    \end{align*}
+    So, $(A\cap B)\cap C = A\cap(B\cap C)$
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\cap A = A$
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For all $x$, suppose $x\in A\cap A$. Then $x\in A$ and $x\in A$ and hence $x\in A$. Therefore, $x\in A$.
+        \item ($\supseteq$) For all $x\in A$, we have $x\in A$ and hence $x\in A$ and $x\in A$. So, $x\in A\cap A$ 
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    For all set $A$, $A\cap \empty = \empty$
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) for any $x\in A\cap \empty$, we have $x\in \empty$.
+        \item ($\supseteq$) for any $x$. Since $x\not\in \empty$. Then it is not that case that $x\in A$ and $x\in \empty$. So, $x\not\in A\cap \empty$ and therefore if $x\in A\cap \empty$, then $x\in \empty$.
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    For all set $A,B,C$, if $A\subseteq B$ and $A\subseteq C$, then $A\subseteq B\cap C$.
+\end{prop}
+\begin{proof}
+    For any $x\in A$, since $A\subseteq B$ and $A\subseteq C$, we have $x\in B$ and $x\in C$. So, $x\in B\cap C$. 
+\end{proof}
+\begin{defn}
+    (Disjoint) Let $A,B$ be sets. $A,B$ are \textbf{disjoint} if $A\cap B = \empty$
+\end{defn}
+\begin{defn}
+    (Pairwise disjoint) Let $A$ be a set, $A$ is \textbf{pairwise disjoint} when for any $x,y\in A$, if $x\neq y$, then $x\cap y= \empty$
+\end{defn}
+\begin{defn}
+    (Set complement) Let $A,B$ be sets. Then the \textbf{complement} of $A$ with respect of $B$, denoted $A\setminus B$, is the set $A\setminus B := \set{x\in A|x\not\in B}$
+\end{defn}
+\begin{defn}
+    For any set $A$, $A\setminus \empty = A$
+\end{defn}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x$, if $x\in A\setminus \empty$, then $x\in A$ and $x\not\in \empty$. Then $x\in A$. Hence, $A\setminus \empty \subseteq A$.
+        \item ($\supseteq$) For any $x$, if $x\in A$. By definition of empty set, $x\not\in A$. So, $x\in A$ and $x\not\in \empty$. Hence, $x\in A\setminus \empty$. Therefore, $A\subseteq A\setminus\empty$.
+    \end{itemize}
+    Therefore, $A\setminus \empty= A$.
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\setminus A = \empty$ 
+\end{prop}
+\begin{proof}
+    For any $x$, $x\not\in\empty$ by definition and it is not the case that $x\in A$ and $x\not\in A$. So, $x\not\in\empty$ and $x\not\in A\setminus A$. Then if $x\in\empty$ then $x\in A\setminus A$, and if $x\in A\setminus A$ then $x\not\in \empty$. Therefore, $A\setminus A = \empty$.
+\end{proof}
+\begin{prop}
+    For any set $A,B$, $A\setminus B \subseteq A$
+\end{prop}
+\begin{proof}
+    Pick any $x\in A\setminus B$, then we have $x\in A$ and $x\not\in B$. In particular, we have $x\in A$ and hence $A\setminus B \subseteq B$.
+\end{proof}
+\section{Axiom of Pairing, Union, and Power Set} 
+The readers may have complainted by now that the axiom schema of specification may be too restrictive. The only set we know exist for sure is the empty set. And the axiom of comprehension only allows us to create set from an existing set. As a result, we could not make much out from these. Hence, we rely on three axioms that create a larger set from pre-existing sets.\\
+The \textit{Axiom of Pair} describe the existence of a doubleton, the \textit{Axiom of Union} for a generalised union, and the \textit{Axiom of Power Set} for the power set.
+\begin{ax}
+    \textbf{(Axiom of Pairing)} For all $x,y$, there is a set $A$ such that $x\in A$ and $y\in A$. ($\vdash \forall x\forall y\exists z (x\in z\vee y\in z))$
+\end{ax}
+\begin{ax}
+    \textbf{(Axiom of Union)} Let $\mathscr A$ be a set, then there exists a set $B$ such that for any $A\in \mathscr A$, if $x\in A$, then $x\in B$. ($\vdash \forall x\exists y\forall z (z\in x\rightarrow z\in y)$)
+\end{ax}
+\begin{ax}
+    \textbf{(Axiom of Power Set)} Suppose $A$ be a set, then there is a set $P$ such that if $B\subseteq A$ is a subset, then $B\in P$. ($\vdash \forall x\exists y\forall z (z\subseteq x\rightarrow z\in y)$)
+\end{ax}
+It is actually wrong to say these axioms captures the idea of doubletons, unions, and power sets exactly. Take the Axiom of Pairing as an example, let $x,y$ be two distinct object, then the set $\set{x,y,\square, \triangle,\text{Hello}}$ also satisfies the conditions stated in the axiom. $\square, \triangle$, and Hello are unwanted element that we would like to be excluded from our set. The set will be the desired doubleton only after we applied the Axiom Schema of Restricted Comprehension.
+\begin{prop}
+    ($Doubleton$) For any $x,y$, there is a unique set $A$, called a \textbf{doubleton} of $x,y$, such that for any $z$, $z\in A$ if and only if $z=x$ or $z=y$.
+\end{prop}
+\begin{proof}
+    Let $x,y$ be objects, then by the Axiom of Pairing, there is an $A$ such that $x\in z$ or $y\in z$. Then let $D = \set{w\in z| w=z\text{ or }w=y}$. It follows immediately that $D$ is the set we after. The Axiom Schema of Restricted Comprehension ensures its uniqueness.
+\end{proof}
+\begin{prop}
+    (Singleton) For any $x$, there is a unique set $S$ such that for any $y$, $y\in S$ if and only if $y= x$.
+\end{prop}
+\begin{proof}
+    The set $\set{x,x}$ is our desired set.
+\end{proof}
+The Axiom of Union and the Axiom of Power Set also faces the same problem, we also need to use Axiom Schema of Restricted Specification on these two two axioms to obtain the desired sets. The proofs go very similarly as the one we just had. 
+\begin{prop}
+    (Power Set) For any $A$, there exist a unique $P$, called the \textbf{power set} of $P$, such that for any $B$, $B\in P$ if and only if $B\subseteq A$.
+\end{prop}
+\begin{proof}
+    Omitted.
+\end{proof}
+\begin{prop}
+    (Union) For any $\mathscr A$, there is a unique set $U$, called the \textbf{generalised union of }$\mathscr A$, such that for any $x$, $x\in U$ if and only if $x\in A$ for some $A\in \mathscr A$.
+\end{prop}
+\begin{proof}
+    Omitted.
+\end{proof}
+\begin{prop}
+    (Generalised Intersection) For any set $\mathscr A$, if $\mathscr A$ is non-empty, there is a set $I$ such that for any $x$, $x\in I$ if and only if $x\in A$ for any $A\in\mathscr A$. 
+\end{prop}
+\begin{rem}
+    We write the generalised union of $\mathscr A$ as $\bigcup\mathscr A$ or $\displaystyle \bigcup_{A\in\mathscr A}A$, the generalised intersection of $\mathscr A$ as $\bigcap \mathscr A$ or $\displaystyle\bigcap_{A\in\mathscr A}A$ and the power set of $A$ as $\mc P(A)$. Moreover, if $\mathscr A= \set{A,B}$, we write $\bigcup \mathscr A = A\cup B = B\cup A$, and $\bigcap A\cap B = B\cap A$. We call $A\cup B$ and $A\cap B$ simply their \textbf{union} and \textbf{intersections} respectively.
+\end{rem}
+Here, we will prove some very trivial yet important properties regarding union, intersections, and power sets.
+\begin{prop}
+    {(Associativity of set union) For any set $A,B,C$, $(A\cup B)\cup C = A\cup(B\cup C)$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cup B)\cup C\\
+        \Leftrightarrow & x\in (A\cup B)\text{ or }x\in C\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B)\text{ or }x\in C\\
+        \Leftrightarrow & x\in A\text{ or }(x\in B\text{ or }x\in C)\\
+        \Leftrightarrow & x\in A \text{ or }x\in B\cup C\\
+        \Leftrightarrow & x\in A \cup(B\cup C)
+    \end{align*}
+    Therefore, $(A\cup B)\cup C = A\cup (B\cup C)$
+\end{proof}
+\begin{prop}
+    {For any set $A,B$, $A\subseteq A\cup B$ and $B\subseteq A\cup B$}
+\end{prop}
+\begin{proof}
+    For any set $x$, if $x\in A$, then $x\in A$ or $x\in B$. Then $x\in A\cup B$. So, $x\in A\cup B$.\\
+    Similarly, $B\subseteq B\cup A$. Since $A\cup B = B\cup A$, we have $B\subseteq A\cup B$.
+\end{proof}
+\begin{prop}
+    {For any set $A$, $A\cup\empty = A$}
+\end{prop}
+\begin{proof}
+    ($\subseteq$) For any $x$, if $x\in A\cup \empty$, then $x\in A$ or $x\in \empty$. But since $x\in\empty$ by definition, $x\in A$. Therefore, $A\cup \empty\subseteq A$\\
+    ($\supseteq$) For any $x$, if $x\in A$, then $x\in A$ or $x\in \empty$. Then $x\in A\cup \empty$. Then $A\subseteq A\cup\empty$\\
+    Therefore, $A\cup\empty = A$
+\end{proof}
+\begin{prop}
+    {For any set $A$, $A\cup A = A$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivlent. 
+    \begin{align*}
+        & x\in A\\
+        \Leftrightarrow & x\in A \text{ or }x\in A\\
+        \Leftrightarrow & x\in A\cup A
+    \end{align*}
+    So, $A\cup A = A$
+\end{proof}
+\begin{prop}
+    {For any set $A,B,C$, if $A\subseteq C$ and $B\subseteq C$, then $A\cup B\subseteq C$}\
+\end{prop}
+\begin{proof}
+    Pick any $x\in A\cup B$, then $x\in A$ or $x\in B$. 
+    \begin{itemize}
+        \item If $x\in A$, since $A\subseteq C$, we have $x\in C$
+        \item If $x\in B$, since $B\subseteq C$, we have $x\in C$
+    \end{itemize}
+    In any case, $x\in C$. So, $A\cup B\subseteq C$.
+\end{proof}
+\begin{prop}
+    {(Distributivity between set intersection and set union) For any set $A,B,C$, $(A\cup C)\cap(B\cup C) = (A\cap B)\cup C$ and $(A\cap C)\cup (B\cap C) = (A\cup B) \cap C$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in (A\cup C)\cap(B\cup C)\\
+        \Leftrightarrow & x\in (A\cup C) \text{ and }x\in(B\cup C)\\
+        \Leftrightarrow & (x\in A\text{ or }x\in C)\text{ and }(x\in B\text{ or }x\in C)\\
+        \Leftrightarrow & (x\in A \text{ and }x\in B)\text{ or }x\in C\\
+        \Leftrightarrow & (x\in A\cap B)\text{ or }x\in C\\
+        \Leftrightarrow & x\in(A\cap B)\cup C
+    \end{align*}
+    \begin{align*}
+        & x\in (A\cap C)\cup (B\cap C)\\
+        \Leftrightarrow & x\in A\cap C \text{ or }x\in B\cap C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in C)\text{ or }(x\in B\text{ and }x\in C)\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B) \text{ and }x\in C\\
+        \Leftrightarrow & x\in A\cup B \text{ and }x\in C\\
+        \Leftrightarrow & x\in(A\cup B)\cap C
+    \end{align*}
+\end{proof}
+\begin{cor}
+    {For any set $A,B,C$, $A\cap (B\cup C) = (A\cap B)\cup  (A\cap C)$ and $A\cup(B\cap C) = (A\cup B)\cap (A\cup C)$}
+\end{cor}
+\begin{proof}
+    \begin{gather*}
+        A\cap (B\cup C) = (B\cup C)\cap A = (B\cap A)\cup (C\cap A) = (A\cap B)\cup (A\cap C)\\
+        A\cup (B\cap C) = (B\cap C)\cup A = (B\cup A)\cap (C\cup A) = (A\cup B)\cap (A\cup C)
+    \end{gather*}
+\end{proof}
+\begin{prop}
+    {(Distributivity between set intersection and set complement) For any set $A,B,C$, $(A\cap B)\setminus C = (A\setminus C) \cap (B\setminus C)$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent 
+    \begin{align*}
+        & x\in(A\cap B)\setminus C\\
+        \Leftrightarrow & x\in A\cap B\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in B)\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ and }x\in B)\text{ and }(x\not\in C\text{ and } x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in C)\text{ and }(x\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C \text{ and }x\in B\setminus C\\
+        \Leftrightarrow & x\in (A\setminus C)\cap (B\setminus C)
+    \end{align*}
+    So, $(A\cap B)\setminus C = (A\setminus C)\cap (B\setminus C)$
+\end{proof}
+\begin{prop}
+    {(Distributivity of set complement I) For any set $A,B,C$, $(A\cup B)\setminus C = (A\setminus C)\cup (B\setminus C)$ and $(A\cap B)\setminus C = (A\setminus C)\cup (A\setminus B)$}
+\end{prop}
+\begin{proof}
+    For all $x$, the following are equivalent, 
+    \begin{align*}
+        & x\in(A\cup B)\setminus C\\
+        \Leftrightarrow & x\in A\cup B \text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\text{ or }x\in B)\text{ and }x\not\in C\\
+        \Leftrightarrow & (x\in A\a x\not\in C)\o (x\in B\a x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C\o x\in B\setminus C\\
+        \Leftrightarrow & x\in(A\setminus C)\cup(B\setminus C)
+    \end{align*}
+    So, $(A\cup B)\setminus C = (A\setminus C)\cup (B\setminus C)$
+    \begin{align*}
+        & x\in(A\cap B)\setminus C\\
+        \Leftrightarrow & x\in(A\cap B)\a x\not\in C\\
+        \Leftrightarrow & (x\in A\a x\in B)\a x\not\in C\\
+        \Leftrightarrow & (x\in A \a x\in B)\a (x\not\in C \a x\not\in C)\\
+        \Leftrightarrow & (x\in A\a x\not\in C)\a (x\in B\a x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus C \a x\in B\setminus C\\
+        \Leftrightarrow & x\in (A\setminus C)\cap (B\setminus C)
+    \end{align*}
+    So, $(A\cap B)\setminus C = (A\setminus C)\cup (A\setminus B)$
+\end{proof}
+\begin{prop}
+    {(Distributivity of set complement II/De Morgan's law)For any set $A,B,C$, $A\setminus(B\cap C) = (A\setminus B) \cup (A\setminus C)$ and $A\setminus (B\cup C) = (A\setminus B)\cap (A\setminus C)$}
+\end{prop}
+\begin{proof}
+    For any $x$, the following are equivalent,
+    \begin{align*}
+        & x\in A\setminus (B\cap C)\\
+        \Leftrightarrow & x\in A \text{ and }x\not\in B\cap C\\
+        \Leftrightarrow & x\in A \text{ and }(x\not\in B\text{ or }x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in B)\text{ or }(x\in A\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus B\text{ or }x\in A\setminus C\\
+        \Leftrightarrow & x\in (A\setminus B)\cup(A\setminus C)
+    \end{align*}
+    So, $A\setminus(B\cap C) = (A\setminus B) \cup (A\setminus C)$\\
+    \begin{align*}
+        & x\in A\setminus (B\cup C)\\
+        \Leftrightarrow & x\in A\text{ and }x\not\in B\cup C\\
+        \Leftrightarrow & x\in A \text{ and }(x\not\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & (x\in A \text{ and } x\in A)\text{ and }(x\not\in B\text{ and }x\not\in C)\\
+        \Leftrightarrow & (x\in A\text{ and }x\not\in B)\text{ and }(x\in A\text{ and }x\not\in C)\\
+        \Leftrightarrow & x\in A\setminus B\text{ and }x\in A\setminus C\\
+        \Leftrightarrow & x\in(A\setminus B)\cap(A\setminus C)\\
+    \end{align*}
+    So, $A\setminus (B\cup C) = (A\setminus B)\cap (A\setminus C)$
+\end{proof}
+\begin{prop}
+    For any $A\in\mathscr A$, $A\subseteq \bigcup\mathscr A$
+\end{prop}
+\begin{proof}
+    For any $A\in\mathscr A$, for any $x\in A$, by the definition of generalised union, we have $x\in\mathscr A$, then $A\subseteq \bigcup \mathscr A$.
+\end{proof}
+\begin{prop}
+    Let $\mathscr A$ be a set. Suppose $A\in\mathscr A$. Then $\bigcap\mathscr A\subseteq A$.
+\end{prop}
+\begin{proof}
+    For any $x\in \bigcap\mathscr A$, we have $x\in B$ for any $B\in\mathscr A$. In particular, we have $x\in A$. 
+\end{proof}
+\begin{prop}
+    For any $\mathscr A, \mathscr B$, if $\mathscr A\subseteq \mathscr B$, then $\bigcup\mathscr A\subseteq \bigcup\mathscr B$.
+\end{prop}
+\begin{proof}
+    Let $\mathscr A\subseteq \mathscr B$. The for any $x\in \bigcup A$, there is some $A\in\bigcup \mathscr A$ such that $x\in A$. Since $\mathscr A\subseteq B$, then $A$ is also a subset of $B$, then $x\in \bigcup B$.
+\end{proof}
+\begin{prop}
+    For any $\mathscr A, \mathscr B$, if $\mathscr A\subseteq \mathscr B$, then $\bigcap \mathscr B\subseteq \bigcap\mathscr A$
+\end{prop}
+\begin{proof}
+    Let $x\in\bigcap\mathscr B$, then for any $A\in\mathscr A$, since $\mathscr A\subseteq \mathscr B$, we have $A\in\mathscr B$. By definition of intersection, we have $x\in A$. Therefore, by the definition of intersection again, $x\in \bigcap\mathscr A$.
+\end{proof}
+\begin{prop}
+    For any set $A$, $\empty\in\mc P(A)$
+\end{prop}
+\begin{proof}
+    Since $\empty\subseteq P$, $\empty\in \mc P(A)$
+\end{proof}
+\begin{prop}
+    For any set $A$, $A\in\mc P(A)$.
+\end{prop}
+\begin{proof}
+    Since $A\subseteq A$, therefore $A\in\mc P(A)$.
+\end{proof}
+\begin{prop}
+    Let $A,B$ be sets. Then $A\subseteq B$ if and only if $\mc P(A)\subseteq \mc P(B)$.
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item $(\Rightarrow)$ Let $C\in\mc P(A)$, which implies $C\subseteq B$. Then by properties of subset relation, we have $C\subseteq A$. Therefore, $C\in \mc P(B)$.
+        \item ($\Leftarrow$) For any $x\in A$, we have $\set{x}\in\mc P(A)$. Since $\mc P(A)\subseteq \mc P(B)$, $\set{x}\in\mc P(B)$ as well. Then $\set{x}\subseteq B$ and hence $x\in B$.
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    Let $A,B$ be sets, then $\mc P(A)\cap \mc P(B) = \mc P(A\cap B)$ 
+\end{prop}
+\begin{proof}
+    For any $C$, the following are equivalent 
+    \begin{align*}
+        & C\in\mc P(A)\cap \mc P(B)\\
+        \Leftrightarrow & C\in\mc P(A)\a C\in\mc P(B)\\
+        \Leftrightarrow & C\subseteq A\a C\subseteq B\\
+        \Leftrightarrow & C\subseteq A\cap B\\
+        \Leftrightarrow & C\in\mc P(A\cap B)
+    \end{align*}
+\end{proof}
+\begin{prop}
+    Let $A,B$ be sets, then $\mc P(A)\cup\mc P(B)\subseteq \mc P(A\cup B).$
+\end{prop}
+\begin{proof}
+    For any $C\in\mc P(A)\cup\mc P(B)$, we have $C\subseteq A$ or $C\subseteq B$. In any case, we have $C\subseteq A\cup B$. Therefore, $C\in\mc P(A\cup B)$
+\end{proof}
+\begin{rem}
+    Readers may be tempted to state that $\mc P(A)\cup\mc P(A) = \mc P(A\cup B)$, so that the two preceding propositions will be parallel. But it is indeed that case that $\mc P(A\cup B)\subseteq \mc P(A)\cup \mc P(B)$ is not necessarily true. Consider the set $\set{x},\set{y}$, where $x,y$ are distinct objects. Then we have the following 
+    \begin{align*}
+        \mc P(\set{x}) &= \set{\empty, \set{x}} \\
+        \mc P(\set{y}) &= \set{\empty, \set{y}} \\
+        \mc P(\set{x})\cup\mc P(\set{y}) &= \set{\empty, \set{x},\set{y}} \\
+        \mc P(\set{x} \cup\set{y}) &= \set{\empty, \set{x,y}}
+    \end{align*}
+    Clearly, we cannot have $\mc P(A\cup B)\subseteq \mc P(A)\cup \mc P(B)$ is not necessarily true. Consider the set $\set{x},\set{y}$.
+\end{rem}
+\begin{prop}
+    Let $A$ be a set, then $\bigcup \mc P(A) = A$
+\end{prop}
+\begin{proof}
+    Let $x$ be an object, the followings are equivalent 
+    \begin{align*}
+        & x\in \bigcup \mc P(A)\\
+        \Leftrightarrow & x\in B\text{ for some }B\in\mc P(A)\\
+        \Leftrightarrow & x\in B \text{ for some }B\subseteq A
+    \end{align*}
+    ~
+    \begin{itemize}
+        \item ($\subseteq$) For any $x\in\bigcup \mc P(A)$, we have $x\in B$ for some $B\in \mc P(A)$. It follows that $B\subseteq A$ and hence $x\in A$.
+        \item ($\supseteq$) For any $x\in A$, we have $\set{x}\in\mc P(A)$. This implies that $\set{x}\subseteq \bigcup\mc P(A)$. Since $x\in\set{x}$, we have $x\in\bigcup \mc P(A)$.
+    \end{itemize}
+\end{proof}
+\section{Relations and Functions}
+Now an important concept that will be useful for us is orderliness. Now the notation $\set{a,b}$ is just a convenient notation. It does not convey any sense of order since $\set{a,b} = \set{b,a}$. We need to express order in more sophisticated way. 
+\begin{defn}
+    {(Ordered pair) For all $x,y$, the order pair $(x,y)$ is defined as $(x,y) = \set{\set{x},\set{x,y}}$}
+\end{defn}
+\begin{defn}
+    {(Ordered triple) For all $x,y,z$, the ordered triple $(x,y,z)$ is defined as $(x,y,z) = ((x,y),z)$}
+\end{defn}
+\begin{prop}
+    For all $a,b,c,d$, $(a,b) = (c,d)$ if and only if $a = c$, $b = d$
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\Rightarrow$) Suppose $(a,b) = (c,d)$.
+        \begin{itemize}
+            \item (\textsc{Case 1}) Suppose $a = b$, then $(a,b) = \set{\set{a},\set{a,b}} = \set{\set{a},\set{a,a}} = \set{\set{a}}$. Also, $\set{\set{c},\set{c,d}} = (c,d) = (a,b) = \set{\set{a}}$. Thus, $\set{c} = \set{c,d} = \set{a}$ and therefore $c = d = a$. Since $a = b$, $b = d$,
+            \item (\textsc{Case 2}) Suppose $a\neq b$. Since $(a,b)= (c,d)$, we have $\set{a} = \set{c}$ or $\set{a} = \set{c,d}$. Then $a = c$ or $a = c = d$. In any case, $a = c$. We have also $\set{b} = \set{c}$ or $\set{b} = \set{c,d}$. But since $b\neq a$, $b\neq c$. Then it is not the case that $\set{b} = \set{c}$. So, $\set{b} = \set{c,d}$. Then we have $b = c$ or $ b = d$. Since $b\neq c$, we have $b = d$.
+        \end{itemize}
+        \item ($\Leftarrow$) Suppose $a = c$, $b = d$. Then $(a,b) = \set{\set{a},\set{a,b}} = \set{\set{c}, \set{c,d}} = (c,d)$
+    \end{itemize}
+\end{proof}
+\begin{prop}
+    {For all $a,b,c,d,e,f$, $(a,b,c) = (d,e,f)$ if and only if $a=d,b=e,c=f$}
+\end{prop}
+\begin{proof}
+    ~
+    \begin{itemize}
+        \item ($\Rightarrow$) Suppose $(a,b,c) = (d,e,f)$, then $\set{((a,b),c)} = ((d,e),f)$. Then $(a,b) = (d,e)$ and $c=f$. Since $(a,b) = (d,e)$, we have $a = d$ and $b=e$.
+        \item ($\Leftarrow$) Suppose $a = d, b = e, c = f$, then $(a,b,c) = ((a,b) ,c) = ((d,e),f) = (d,e,f)$
+    \end{itemize}
+\end{proof}
+These definitions are extremely messy. This is why we will cease at ordered triple. We will define the rest once we have developed an account of functions and natural numbers.
+\begin{prop}
+    {\textbf{(Cartesian product)} For any set $A,B$, there exist a unique set $C$ such that for any $z$, $z\in C$ if and only if $z= (x,y)$ for some $x\in A, y\in B$}.
+\end{prop}
+\begin{proof}
+        The desired $C$ is the set $C =  \set{z\in\mathcal P (\mathcal P(A\cup B))|\text{ there exist some unique }x\in A,y\in B\text{ such that }(x,y) = z}$
+\end{proof}
+\begin{rem}
+    We will denote the Cartesian product of $A,B$ as $A\times B$.
+\end{rem}
+An important concept we use in our ordinary language is the concept of \textit{relation}. 
+
+Of course there is more to set theory than what was discussed in this chapter. But what we have now is enough for us to define the necessary logical tools that develop a language for Mathematics. We will continue our discussion of set theory in the next part of the book.
